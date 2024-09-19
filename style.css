@@ -1,17 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
+let campoIdade;
+let campoFantasia;
 
-  </head>
-  <body>
-    <main>
-    </main>
-    <script src="sketch.js"></script>
-  </body>
-</html>
+function setup() {
+    createCanvas(400, 400);
+    campoIdade = createInput("15");
+    campoFantasia = createCheckbox("Gosta de Fantasia ?");
+}
 
+
+function draw() {
+    background(220);
+    let idade = campoIdade.value();
+    let gostaDeFantasia = campoFantasia.checked();
+    let recomendacao = geraRecomendacao(idade, gostaDeFantasia);
+    text(recomendacao, width / 2, height / 2);
+}
+
+function geraRecomendacao(idade, gostaDeFantasia) {
+    if(idade >= 10) {
+        if(idade >= 14) {
+            return "O menino que descobriu o vento";
+        } else {
+            if(gostaDeFantasia){
+                return "As aventuras de Pi";
+            } else {
+                return "Depois da chuva";
+            }
+        }
+    } else {
+        if(gostaDeFantasia) {
+            return "A viagem de Chihiro";
+        } else {
+            return "O feitiço do tempo";
+        }
+    }
+}
 
